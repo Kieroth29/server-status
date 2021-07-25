@@ -11,5 +11,7 @@ def main():
    return render_template("main.html", r=r)
 
 if __name__ == '__main__':
-   context = (os.environ.get('CERT_FILE'), os.environ.get('CERT_PW'))
+   CERT_FILE = os.path.join(os.environ.get('CERT_FILE'))
+   CERT_PW = os.path.join(os.environ.get('CERT_PW'))
+   context = (CERT_FILE, CERT_PW)
    app.run('0.0.0.0', ssl_context=context)
