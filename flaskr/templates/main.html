@@ -10,25 +10,41 @@
 <body>
     <div class="jumbotron">
         {% if r['online'] == True: %}
+
             {% if r['players']['online'] > 0: %}
+
                 <h1 class="display-4">{{ r['motd']['raw'][0] }}</h1>
+
                 <p class="lead">IP para conexão - <code>{{ r['hostname'] }}</code></p>
+
                 <hr class="my-4">
-                <p> {{ r['players']['online'] }} jogadores online </p>
+                {% if r['players']['online'] > 1: %}
+                    <p> {{ r['players']['online'] }} jogadores online </p>
+                {% else: %}
+                    <p>1 jogador online</p>
+                {% endif %}
+
                 {% for player in r['players']['list']: %}
                     <p>{{ player }}</p>
                 {% endfor %}
+
             {% else: %}	
+
                 <h1 class="display-4">{{ r['motd']['raw'][0] }}</h1>
+
                 <p class="lead">IP para conexão - <code>{{ r['hostname'] }}</code></p>
+
                 <p>Nenhum jogador online.</p>
+                
             {% endif %}
+
         {% else: %}
             <h1 class="display-4">Servidor offline</h1>
+
             <p class="lead">Tente novamente mais tarde</p>
-    {% endif %}
+        {% endif %}
     </div>
-    
+
     <p class="lead ml-4"><a href="https://api.mcsrvstat.us/">API Source</a></p>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
