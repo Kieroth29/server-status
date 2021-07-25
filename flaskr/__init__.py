@@ -26,4 +26,7 @@ def create_app(test_config=None):
     app.register_blueprint(main.bp)
     app.add_url_rule('/', endpoint="index")
 
+    if __name__ == "__main__":
+        app.run(host='0.0.0.0')
+
     return app
